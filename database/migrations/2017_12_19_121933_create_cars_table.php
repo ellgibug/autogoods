@@ -20,6 +20,7 @@ class CreateCarsTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('modification');
+            $table->boolen('filter')->default(0);
         });
     }
 
