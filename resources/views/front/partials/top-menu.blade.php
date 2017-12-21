@@ -22,7 +22,9 @@
                                 @if(count($level2->levels))
                                     <ul class="dropdown-menu">
                                         @foreach($level2->levels as $level3)
-                                            <li><a href="{{ route('products.list', $level3->id) }}">{{ $level3->name }}</a></li>
+                                            <li>
+                                                <a href="{{ route('products.list', $level3->id) }}">{{ $level3->name }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 @endif

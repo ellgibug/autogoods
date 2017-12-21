@@ -25,6 +25,8 @@ Route::get('cars/{id?}', 'CarController@edit')->name('car.edit');
 Route::put('cars/{id?}', 'CarController@update')->name('car.update');
 Route::delete('cars/{id?}', 'CarController@destroy')->name('car.destroy');
 
+Route::get('search', 'ProductController@search')->middleware('remove.token')->name('products.search');
+
 
 
 Route::prefix('admin')->group(function () {
