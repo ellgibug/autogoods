@@ -3,6 +3,15 @@
 @section('f-section')
     <section class="section-sm">
         <div class="container">
+            <form action="{{ route('products.search') }}">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" placeholder="Search" class="form-control required" name="search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info mdl-js-button mdl-js-ripple-effect" type="submit">Find!</button>
+                    </span>
+                </div>
+            </form>
         </div>
     </section>
 @endsection

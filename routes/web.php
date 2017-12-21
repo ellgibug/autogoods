@@ -23,6 +23,8 @@ Route::get('/home', 'UserController@index')->name('home');
 
 
 
+Route::get('search', 'ProductController@search')->middleware('remove.token')->name('products.search');
+
 
 
 Route::prefix('admin')->group(function () {

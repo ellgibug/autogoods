@@ -32,7 +32,7 @@
 
     <div id="header" class="navbar-toggleable-sm clearfix dark b-0 header-sm">
 
-    @yield('f-section')
+        @yield('f-section')
 
     <!-- TOP NAV -->
     <header id="topNav">
