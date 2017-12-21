@@ -20,7 +20,6 @@ class FrontPagesController extends Controller
         $products = $level->products()->get();
 
         return view('front.pages.level', compact('level', 'products'));
-        dd($products);
     }
 
     public function getSingleProduct($id)

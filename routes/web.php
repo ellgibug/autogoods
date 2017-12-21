@@ -18,10 +18,12 @@ Route::get('/', 'FrontPagesController@index')->name('main');
 Route::get('level/{level}', 'FrontPagesController@getProductsByLevels')->name('products.list');
 Route::get('product/{product}', 'FrontPagesController@getSingleProduct')->name('product.single');
 
-
 Route::get('/home', 'UserController@index')->name('home');
 
-
+Route::post('cars', 'CarController@store')->name('car.store');
+Route::get('cars/{id?}', 'CarController@edit')->name('car.edit');
+Route::put('cars/{id?}', 'CarController@update')->name('car.update');
+Route::delete('cars/{id?}', 'CarController@destroy')->name('car.destroy');
 
 
 
