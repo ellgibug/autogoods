@@ -10,7 +10,10 @@ class FrontPagesController extends Controller
 {
     public function index()
     {
-        return view('front.pages.index');
+        $previous = Product::all()->random(8);
+        $prices = Product::all()->random(8);
+        $season = Product::all()->random(8);
+        return view('front.pages.index')->with(compact('previous', 'prices', 'season'));
     }
 
     public function getProductsByLevels($id)

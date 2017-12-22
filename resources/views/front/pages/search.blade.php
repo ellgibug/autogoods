@@ -1,11 +1,5 @@
 @extends('front.layouts.master')
 
-@section('f-section')
-    <section class="section-sm">
-        <div class="container">
-        </div>
-    </section>
-@endsection
 
 @section('s-section')
     <section class="m-0">

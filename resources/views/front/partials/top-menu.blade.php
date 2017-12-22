@@ -1,4 +1,4 @@
-<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+<div class="navbar-collapse collapse float-right nav-main-collapse submenu">
     <nav class="nav-main">
 
         <!--

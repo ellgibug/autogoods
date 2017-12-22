@@ -1,11 +1,5 @@
 @extends('front.layouts.master')
 
-@section('f-section')
-    <section class="section-sm">
-        <div class="container">
-        </div>
-    </section>
-@endsection
 
 @section('s-section')
 
@@ -27,14 +21,7 @@
                         <li class="col-sm-6 col-md-3 mb-100">
                             <!-- SQUARE CARD -->
                             <div class="demo-card-square mdl-card mdl-shadow--2dp h-300 fw-300 text-center">
-                                <!--
-                                    fw-50, fw-100, fw-150, fw-200, fw-250, etc
-                                    h-50, h-100, h-150, h-200, heitgh-250, etc
-                                    -->
-                                <div class="mdl-card__title mdl-card--expand h-300" style="background: url({{ asset('public/images/img.jpg') }}) center no-repeat; background-size: contain;">
-                                    <!-- text-white, text-black, text-yellow, etc (see essentials.css)-->
-
-                                </div>
+                                <div class="mdl-card__title mdl-card--expand h-300" style="background: url({{ asset('public/images/img.jpg') }}) center no-repeat; background-size: contain;"></div>
                                 <div class="mdl-card__supporting-text">
                                     <a href="{{ route('product.single', $product->id) }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect bold">
                                         <h5>{{ $product->name }}</h5>
