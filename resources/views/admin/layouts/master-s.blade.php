@@ -7,6 +7,9 @@
     <meta name="description" content="" />
     <meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
 
+    <!-- CSRF TOKEN -->
+    @yield('csrf-token')
+
     <!-- mobile settings -->
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
 

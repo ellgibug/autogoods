@@ -17,7 +17,7 @@
     <nav id="sideNav"><!-- MAIN MENU -->
         <ul class="nav nav-list">
             <li class="active"><!-- dashboard -->
-                <a class="dashboard" href="{{ route('admin.dashboard') }}"><!-- warning - url used by default by ajax (if eneabled) -->
+                <a class="dashboard" href="{{ route('admin.dashboard') }}"><!-- warning - url used by default by ajax (if enabled) -->
                     <i class="main-icon fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
@@ -38,7 +38,7 @@
                     <i class="main-icon fa fa-diamond" aria-hidden="true"></i> <span>Товары</span>
                 </a>
                 <ul><!-- submenus -->
-                    <li><a href="#">Категории</a></li>
+                    <li><a href="admin/categories">Категории</a></li> <!-- Fix this -->
                     <li><a href="#">Секции</a></li>
                     <li><a href="#">Брэнды</a></li>
                     <li><a href="#">Товары</a></li>

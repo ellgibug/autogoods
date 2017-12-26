@@ -102,14 +102,28 @@
     <div class="copyright">
         <div class="container">
             <ul class="list-inline inline-links mobile-block float-right m-0">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Pricing</a></li>
-                <li><a href="#">Contact</a></li>
+                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <i class="icon-facebook"></i>
+                    <i class="icon-facebook"></i>
+                </a>
+
+                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
+                    <i class="icon-instagram"></i>
+                    <i class="icon-instagram"></i>
+                </a>
+
+                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-vk" data-toggle="tooltip" data-placement="top" title="Vk">
+                    <i class="icon-vk"></i>
+                    <i class="icon-vk"></i>
+                </a>
+
+                <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                    <i class="icon-twitter"></i>
+                    <i class="icon-twitter"></i>
+                </a>
             </ul>
 
-            &copy; All Rights Reserved, Company LTD
+            &copy; Все права защищены, AutoCompany
         </div>
     </div>
 </footer>
