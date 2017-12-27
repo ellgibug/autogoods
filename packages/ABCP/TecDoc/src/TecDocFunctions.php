@@ -14,17 +14,6 @@ class TecDocFunctions
         $this->config = $config;
     }
 
-    // Функция - затычка
-    public function if_file_get_contents($url)
-    {
-        @$contents = file_get_contents($url);
-        if($contents){
-            return $contents;
-        }
-        else{
-            return '[]';
-        }
-    }
     /*
      * 2.6.1
      * Получение справочника производителей
@@ -38,7 +27,7 @@ class TecDocFunctions
                     'userpsw' => $this->config['password'],
                     'userkey' => $this->config['key']
                 ]);
-        $origin_file = $this->if_file_get_contents($url);
+        $origin_file = file_get_contents($url);
         $result = json_decode($origin_file);
 
         return $result;
@@ -58,7 +47,7 @@ class TecDocFunctions
                 'userkey' => $this->config['key'],
                 'manufacturerId' => $manufacturerId
             ]);
-        $origin_file = $this->if_file_get_contents($url);
+        $origin_file = file_get_contents($url);
         $result = json_decode($origin_file);
 
         return $result;
@@ -79,7 +68,7 @@ class TecDocFunctions
                 'manufacturerId' => $manufacturerId,
                 'modelId' => $modelId
             ]);
-        $origin_file = $this->if_file_get_contents($url);
+        $origin_file = file_get_contents($url);
         $result = json_decode($origin_file);
 
         return $result;
@@ -90,7 +79,6 @@ class TecDocFunctions
      * Получение списка применимости
      * Операция: adaptabilityManufacturers
      */
-
     // !!!!!!!!!!
     public function getAdaptabilityManufacturers($brandName, $number)
     {
@@ -101,9 +89,8 @@ class TecDocFunctions
                 'brandName' => $brandName,
                 'number' => $number
             ]);
-        $origin_file = $this->if_file_get_contents($url);
+        $origin_file = file_get_contents($url);
         $result = json_decode($origin_file);
-        dd($origin_file);
 
         return $result;
     }
@@ -120,7 +107,7 @@ class TecDocFunctions
                 'number' => $number,
                 'manufacturerName' => $manufacturerName
             ]);
-        $origin_file = $this->if_file_get_contents($url);
+        $origin_file = file_get_contents($url);
         $result = json_decode($origin_file);
 
         return $result;
@@ -138,7 +125,7 @@ class TecDocFunctions
                 'modelName' => $modelName
             ]);
 
-        $origin_file = $this->if_file_get_contents($url);
+        $origin_file = file_get_contents($url);
         $result = json_decode($origin_file);
 
         return $result;

@@ -28,29 +28,49 @@ $(document).ready(function () {
     // загружаю модели по брэнду
     $("#brand").click(function () {
 
-        $('#model').removeAttr("disabled");
-        $('#model').children().remove();
+        $('#model').removeAttr("disabled").children().remove();
+
+        var attr = $('#modification').attr('disabled');
+        if (typeof attr !== typeof undefined && attr !== false){
+            $('#modification').children().remove();
+        }
 
         $.ajax({
             type: "GET",
-            url: 'home',
+            url: "/home",
             data:{
                 'brand':$(this).val(),
             },
             success: function(data)
             {
+                console.log(data);
                 data.forEach(function(item) {
-                    $('#model').append('<option value="'+item+'">'+item+'</option>');
+                    $('#model').append('<option value="'+item.id+'">'+item.name+'</option>');
                 });
             }
         });
     });
 
     // также должно быть и для модификации, но пока этого нет. просто убираю атрибут disabled
-    $("#brand").click(function () {
-        if($(this).val()) {
-            $('#modification').removeAttr("disabled");
-        }
+    $("#model").click(function () {
+
+        $('#modification').removeAttr("disabled").children().remove();
+
+        $.ajax({
+            type: "GET",
+            url: "/home",
+            data:{
+                'brand':$('#brand').val(),
+                'model':$(this).val(),
+            },
+            success: function(data)
+            {
+                console.log(data);
+                data.forEach(function(item) {
+                    $('#modification').append('<option value="'+item.id+'">'+item.name+'</option>');
+                });
+            },
+        });
     });
 
     // Clicking the save button on the open modal for both CREATE and UPDATE

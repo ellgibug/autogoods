@@ -34,7 +34,7 @@
                         @foreach ($cars as $car)
                             <tr id="car{{$car->id}}">
                                 <td>{{$car->filter}}</td>
-                                <td>{{$car->auto->name}}</td>
+                                <td>{{$car->brand}}</td>
                                 <td>{{$car->model}}</td>
                                 <td>{{$car->modification}}</td>
                                 <td>
@@ -64,8 +64,8 @@
                         <label for="brand" class="col-sm-3 control-label">Марка</label>
                         <div class="col-sm-9">
                             <select class="form-control" name="brand" id="brand">
-                                @foreach($autos as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @foreach($manufacturers as $manufacturer)
+                                <option value="{{ $manufacturer->id }}">{{ $manufacturer->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -74,6 +74,7 @@
                         <label for="model" class="col-sm-3 control-label">Модель</label>
                         <div class="col-sm-9">
                             <select class="form-control" name="model" id="model">
+                                {{--data by ajax from api--}}
                             </select>
                         </div>
                     </div>
@@ -81,10 +82,7 @@
                         <label for="modification" class="col-sm-3 control-label">Модификация</label>
                         <div class="col-sm-9">
                             <select class="form-control" name="modification" id="modification">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                {{--data by ajax from api--}}
                             </select>
                         </div>
                     </div>

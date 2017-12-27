@@ -8,6 +8,7 @@
         "php": ">=7.0.0",
         "algolia/algoliasearch-client-php": "^1.24",
         "fideloper/proxy": "~3.3",
+        "jeroen-g/laravel-packager": "^1.6",
         "laravel/framework": "5.5.*",
         "laravel/scout": "^3.0",
         "laravel/tinker": "~1.0"
@@ -24,11 +25,13 @@
             "database/factories"
         ],
         "psr-4": {
+            "ABCP\\TecDoc\\": "packages/ABCP/TecDoc/src",
             "App\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "ABCP\\TecDoc\\": "packages/ABCP/TecDoc/src",
             "Tests\\": "tests/"
         }
     },
