@@ -1,4 +1,4 @@
-<div class="navbar-collapse collapse float-right nav-main-collapse submenu">
+<div class="navbar-collapse collapse nav-main-collapse submenu-dark">
     <nav class="nav-main">
 
         <!--
@@ -14,7 +14,10 @@
         <ul id="topMain" class="nav nav-pills">
             @foreach($parent_levels as $level1)
                 <li>
-                    <a href="{{ route('products.list', $level1->id) }}">{{ $level1->name }}</a>
+                    <a href="{{ route('products.list', $level1->id) }}"
+                       style="color: {{ count($level1->levels) ? '#35a6d5 !important' : 'inherit' }}"
+                        >{{ $level1->name }}</a>
+                    @if(count($level1->levels))
                     <ul class="dropdown-menu">
                         @foreach($level1->levels as $level2)
                             <li>
@@ -31,6 +34,7 @@
                             </li>
                         @endforeach
                     </ul>
+                    @endif
                 </li>
             @endforeach
         </ul>

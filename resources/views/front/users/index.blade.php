@@ -34,9 +34,9 @@
                         @foreach ($cars as $car)
                             <tr id="car{{$car->id}}">
                                 <td>{{$car->filter}}</td>
-                                <td>{{$car->brand}}</td>
-                                <td>{{$car->model}}</td>
-                                <td>{{$car->modification}}</td>
+                                <td>{{$car->manufacturer_name}}</td>
+                                <td>{{$car->model_name}}</td>
+                                <td>{{$car->modification_name}}</td>
                                 <td>
                                     <button class="btn btn-info open-modal" value="{{$car->id}}">Изменить</button>
                                     <button class="btn btn-danger delete-car" value="{{$car->id}}">Удалить</button>
@@ -61,13 +61,14 @@
             <div class="modal-body">
                 <form id="modalFormData" name="modalFormData" class="form-horizontal" novalidate="">
                     <div class="form-group">
-                        <label for="brand" class="col-sm-3 control-label">Марка</label>
+                        <label for="manufacturer" class="col-sm-3 control-label">Марка</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="brand" id="brand">
+                            <select class="form-control" name="manufacturer" id="manufacturer">
                                 @foreach($manufacturers as $manufacturer)
                                 <option value="{{ $manufacturer->id }}">{{ $manufacturer->name }}</option>
                                 @endforeach
                             </select>
+                            <p id="manufacturer_db" class="hide"></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -76,6 +77,7 @@
                             <select class="form-control" name="model" id="model">
                                 {{--data by ajax from api--}}
                             </select>
+                            <p id="model_db" class="hide"></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -84,6 +86,7 @@
                             <select class="form-control" name="modification" id="modification">
                                 {{--data by ajax from api--}}
                             </select>
+                            <p id="modification_db" class="hide"></p>
                         </div>
                     </div>
                     <div class="form-group">

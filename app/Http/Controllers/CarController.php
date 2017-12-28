@@ -38,16 +38,22 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'brand' => 'required',
-            'model' => 'required',
-            'modification' => 'required'
+            'manufacturer_id' => 'required',
+            'manufacturer_name' => 'required',
+            'model_id' => 'required',
+            'model_name' => 'required',
+            'modification_id' => 'required',
+            'modification_name' => 'required'
         ]);
 
         $car = new Car();
         $car->user_id = Auth::user()->id;
-        $car->brand = $request->brand;
-        $car->model = $request->model;
-        $car->modification = $request->modification;
+        $car->manufacturer_id = $request->manufacturer_id;
+        $car->manufacturer_name = $request->manufacturer_name;
+        $car->model_id = $request->model_id;
+        $car->model_name = $request->model_name;
+        $car->modification_id = $request->modification_id;
+        $car->modification_name = $request->modification_name;
         $car->filter = $request->filter;
         $car->save();
 
@@ -86,18 +92,10 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'brand' => 'required',
-            'model' => 'required',
-            'modification' => 'required'
-        ]);
-
         $car = Car::find($id);
-        $car->brand = $request->brand;
-        $car->model = $request->model;
-        $car->modification = $request->modification;
         $car->filter = $request->filter;
         $car->save();
+
         return response()->json($car);
     }
 

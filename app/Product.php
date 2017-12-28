@@ -51,4 +51,9 @@ class Product extends Model
         return $this->belongsToMany('App\Level');
     }
 
+    public function adaptabilities()
+    {
+        return $this->hasMany('App\Adaptability', 'product_id');
+    }
+
 }

@@ -89,10 +89,17 @@ class TecDocFunctions
                 'brandName' => $brandName,
                 'number' => $number
             ]);
-        $origin_file = file_get_contents($url);
-        $result = json_decode($origin_file);
 
-        return $result;
+        $url_headers = @get_headers($url);
+        if(!$url_headers || $url_headers[0] == 'HTTP/1.1 404 Not Found') {
+            return false;
+        }
+        else {
+            $origin_file = file_get_contents($url);
+            $result = json_decode($origin_file);
+
+            return $result;
+        }
     }
 
 
@@ -107,10 +114,17 @@ class TecDocFunctions
                 'number' => $number,
                 'manufacturerName' => $manufacturerName
             ]);
-        $origin_file = file_get_contents($url);
-        $result = json_decode($origin_file);
 
-        return $result;
+        $url_headers = @get_headers($url);
+        if(!$url_headers || $url_headers[0] == 'HTTP/1.1 404 Not Found') {
+            return false;
+        }
+        else {
+            $origin_file = file_get_contents($url);
+            $result = json_decode($origin_file);
+
+            return $result;
+        }
     }
 
     public function getAdaptabilityModifications($brandName, $number, $manufacturerName, $modelName)
@@ -125,12 +139,17 @@ class TecDocFunctions
                 'modelName' => $modelName
             ]);
 
-        $origin_file = file_get_contents($url);
-        $result = json_decode($origin_file);
+        $url_headers = @get_headers($url);
+        if(!$url_headers || $url_headers[0] == 'HTTP/1.1 404 Not Found') {
+            return false;
+        }
+        else {
+            $origin_file = file_get_contents($url);
+            $result = json_decode($origin_file);
 
-        return $result;
+            return $result;
+        }
     }
 
 }
-
 

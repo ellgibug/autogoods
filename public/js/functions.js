@@ -4,8 +4,12 @@ $(document).ready(function () {
 
     ////----- Open the modal to CREATE a car -----////
     $('#btn-add').click(function () {
-        $('#model').prop( "disabled", true );
-        $('#modification').prop( "disabled", true );
+        $('#manufacturer').show();
+        $('#model').show().prop( "disabled", true );
+        $('#modification').show().prop( "disabled", true );
+        $('#manufacturer_db').toggleClass('hide');
+        $('#model_db').toggleClass('hide');
+        $('#modification_db').toggleClass('hide');
         $('#btn-save').val("add");
         $('#modalFormData').trigger("reset");
         $('#carEditorModal').modal('show');
@@ -15,10 +19,17 @@ $(document).ready(function () {
     $('body').on('click', '.open-modal', function () {
         var car_id = $(this).val();
         $.get('cars/' + car_id, function (data) {
+            console.log(data);
             $('#car_id').val(data.id);
-            $('#brand').val(data.brand);
-            $('#model').append('<option value="'+data.model+'">'+data.model+'</option>');
-            $('#modification').val(data.modification);
+            // $('#manufacturer').append('<option value="'+data.manufacturer_id+'">'+data.manufacturer_name+'</option>');
+            // $('#model').append('<option value="'+data.model_id+'">'+data.model_name+'</option>');
+            // $('#modification').append('<option value="'+data.modification_id+'">'+data.modification_name+'</option>');
+            $('#manufacturer').hide();
+            $('#model').hide();
+            $('#modification').hide();
+            $('#manufacturer_db').removeClass('hide').text(data.manufacturer_name);
+            $('#model_db').removeClass('hide').text(data.model_name);
+            $('#modification_db').removeClass('hide').text(data.modification_name);
             data.filter ? $('#filter').prop( "checked", true ) : $('#filter').prop( "checked", false );
             $('#btn-save').val("update");
             $('#carEditorModal').modal('show');
@@ -26,7 +37,7 @@ $(document).ready(function () {
     });
 
     // загружаю модели по брэнду
-    $("#brand").click(function () {
+    $("#manufacturer").click(function () {
 
         $('#model').removeAttr("disabled").children().remove();
 
@@ -39,7 +50,7 @@ $(document).ready(function () {
             type: "GET",
             url: "/home",
             data:{
-                'brand':$(this).val(),
+                'manufacturer_id':$(this).val()
             },
             success: function(data)
             {
@@ -60,8 +71,8 @@ $(document).ready(function () {
             type: "GET",
             url: "/home",
             data:{
-                'brand':$('#brand').val(),
-                'model':$(this).val(),
+                'manufacturer_id':$('#manufacturer').val(),
+                'model_id':$(this).val()
             },
             success: function(data)
             {
@@ -82,9 +93,12 @@ $(document).ready(function () {
         });
         e.preventDefault();
         var formData = {
-            brand: $('#brand').val(),
-            model: $('#model').val(),
-            modification: $('#modification').val(),
+            manufacturer_id: $('#manufacturer').val(),
+            manufacturer_name: $('#manufacturer option:selected').text(),
+            model_id: $('#model').val(),
+            model_name: $('#model option:selected').text(),
+            modification_id: $('#modification').val(),
+            modification_name: $('#modification option:selected').text(),
             filter: $('#filter').is(':checked') ? $('#filter').val() : 0
         };
         var state = $('#btn-save').val();
@@ -101,7 +115,8 @@ $(document).ready(function () {
             data: formData,
             dataType: 'json',
             success: function (data) {
-                var car = '<tr id="car' + data.id + '"><td>' + data.filter + '</td><td>' + data.brand + '</td><td>' + data.model + '</td><td>' + data.modification + '</td>';
+                console.log(data);
+                var car = '<tr id="car' + data.id + '"><td>' + data.filter + '</td><td>' + data.manufacturer_name + '</td><td>' + data.model_name + '</td><td>' + data.modification_name + '</td>';
                 car += '<td><button class="btn btn-info open-modal" value="' + data.id + '">Изменить</button> ';
                 car += '<button class="btn btn-danger delete-car" value="' + data.id + '">Удалить</button></td></tr>';
                 if (state == "add") {

@@ -50,13 +50,13 @@ class UserController extends Controller
 
         if($request->ajax()){
 
-            if($request->has(['brand', 'model'])){
-                $modifications = $connection->getModifications($request->brand, $request->model);
+            if($request->has(['manufacturer_id', 'model_id'])){
+                $modifications = $connection->getModifications($request->manufacturer_id, $request->model_id);
                 return response()->json($modifications);
             }
 
-            if($request->has('brand')){
-                $models = $connection->getModels($request->brand);
+            if($request->has('manufacturer_id')){
+                $models = $connection->getModels($request->manufacturer_id);
                 return response()->json($models);
             }
             //            switch ($request->brand){

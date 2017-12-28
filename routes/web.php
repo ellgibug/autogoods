@@ -29,7 +29,7 @@ Route::delete('cars/{id?}', 'CarController@destroy')->name('car.destroy');
 
 Route::get('search', 'ProductController@search')->middleware('remove.token')->name('products.search');
 
-Route::any('apicall', 'FrontPagesController@apiCall')->name('api.call');
+Route::any('apicall2', 'FrontPagesController@apiCall2')->name('api.call2');
 
 
 
