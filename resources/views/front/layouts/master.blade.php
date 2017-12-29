@@ -16,7 +16,7 @@
 
     <link href="{{ asset('smarty/css/essentials.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/layout.css') }}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset('smarty/css/plugin-hover-buttons.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/header-1.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/color_scheme/lightgrey.css') }}" rel="stylesheet" type="text/css" id="color_scheme" />
 
@@ -30,22 +30,22 @@
 
     @include('front.partials.top-bar')
 
-    <div id="header" class="navbar-toggleable-sm clearfix dark b-0 header-sm">
-    @include('front.partials.f-section')
+        <div id="header" class="navbar-toggleable-sm clearfix dark b-0 header-sm">
 
-    <!-- TOP NAV -->
-    <header id="topNav">
-        <div class="container">
-            <!-- Mobile Menu Button -->
-            <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            @include('front.partials.top-menu')
+
+        <!-- TOP NAV -->
+        <header id="topNav">
+            <div class="container">
+                <!-- Mobile Menu Button -->
+                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                @include('front.partials.top-menu')
+            </div>
+        </header>
+        <!-- /Top Nav -->
+
         </div>
-    </header>
-    <!-- /Top Nav -->
-
-    </div>
 
     @yield('s-section')
 

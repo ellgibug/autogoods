@@ -1,98 +1,49 @@
 <footer id="footer">
-    <div class="container">
+    <div class="container pt-50">
 
-        <div class="row">
+        <div class="row text-center">
 
-            <div class="col-md-8">
-
-                <!-- Footer Logo -->
-                <img class="footer-logo footer-2" src="{{url('smarty/images/_smarty/logo-footer.png')}}" alt="" />
-
-                <!-- Small Description -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
-
-                <hr />
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-
-                        <!-- Newsletter Form -->
-                        <p class="mb-10">Subscribe to Our <strong>Newsletter</strong></p>
-
-                        <form id="newsletterForm" action="" method="post">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your Email" required="required">
-                                <span class="input-group-btn">
-												<button class="btn btn-info mdl-js-button mdl-js-ripple-effect" type="submit">Subscribe</button>
-											</span>
-                            </div>
-                        </form>
-                        <!-- /Newsletter Form -->
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 hidden-xs-down">
-
-                        <!-- Social Icons -->
-                        <div class="ml-50 clearfix">
-
-                            <p class="mb-10">Follow Us</p>
-                            <a href="#" class="social-icon social-icon-sm social-icon-transparent social-facebook float-left" data-toggle="tooltip" data-placement="top" title="Facebook">
-                                <i class="icon-facebook"></i>
-                                <i class="icon-facebook"></i>
-                            </a>
-
-                            <a href="#" class="social-icon social-icon-sm social-icon-transparent social-twitter float-left" data-toggle="tooltip" data-placement="top" title="Twitter">
-                                <i class="icon-twitter"></i>
-                                <i class="icon-twitter"></i>
-                            </a>
-
-                            <a href="#" class="social-icon social-icon-sm social-icon-transparent social-gplus float-left" data-toggle="tooltip" data-placement="top" title="Google plus">
-                                <i class="icon-gplus"></i>
-                                <i class="icon-gplus"></i>
-                            </a>
-
-                            <a href="#" class="social-icon social-icon-sm social-icon-transparent social-linkedin float-left" data-toggle="tooltip" data-placement="top" title="Linkedin">
-                                <i class="icon-linkedin"></i>
-                                <i class="icon-linkedin"></i>
-                            </a>
-
-                            <a href="#" class="social-icon social-icon-sm social-icon-transparent social-rss float-left" data-toggle="tooltip" data-placement="top" title="Rss">
-                                <i class="icon-rss"></i>
-                                <i class="icon-rss"></i>
-                            </a>
-
-                        </div>
-                        <!-- /Social Icons -->
-
-                    </div>
-
-                </div>
-
-
-
+            <div class="col d-none d-sm-block">
+                <h4>О компании</h4>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
             </div>
-
-            <div class="col-md-4">
-
-                <h4 class="letter-spacing-1">CONTACT US</h4>
-
-                <!-- CONTACT MESSAGES -->
-                <p id="alert_success" class="alert alert-success alert-mini">Message sent! Thank You!</p>
-                <p id="alert_failed" class="alert alert-danger alert-mini">Message not sent!</p>
-                <p id="alert_mandatory" class="alert alert-danger alert-mini">Please, complete all mandatory fields</p>
-
-                <!-- CONTACT FORM -->
-                <form class="validate" method="post" action="">
-
-                    <input type="text" value="" placeholder="Name*" maxlength="100" class="form-control required" name="contact[name]" />
-                    <input type="email" value="" placeholder="Email*" data-msg-email="Please enter a valid email address." class="form-control required" name="contact[email]" />
-                    <textarea maxlength="5000" placeholder="Message*" rows="5" class="form-control required" name="contact[message]" style="resize: none; height: 100px"></textarea>
-                    <input type="submit" value="SUBMIT MESSAGE" class="btn btn-info mdl-js-button mdl-js-ripple-effect" />
-
-                </form>
-                <!-- /CONTACT FORM -->
-
+            <div class="col d-none d-sm-block">
+                <h4>Помощь</h4>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+            </div>
+            <div class="col d-none d-sm-block">
+                <h4>Партнерская программа</h4>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+            </div>
+            <div class="col d-none d-sm-block">
+                <h4>Бонусная программа</h4>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+            </div>
+            <div class="col d-none d-sm-block">
+                <h4>Юридическим лицам</h4>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+                <p class="m-5"><a href="#">Ссылка</a></p>
+            </div>
+            <div class="col d-block d-sm-none mb-0">
+                <h4 class="m-5"><a href="#">О компании</a></h4>
+                <h4 class="m-5"><a href="#">Помощь</a></h4>
+                <h4 class="m-5"><a href="#">Партнерская программа</a></h4>
+                <h4 class="m-5"><a href="#">Бонусная программа</a></h4>
+                <h4 class="m-5"><a href="#">Юридическим лицам</a></h4>
             </div>
 
         </div>
@@ -123,7 +74,7 @@
                 </a>
             </ul>
 
-            &copy; Все права защищены, AutoCompany
+            &copy; Все права защищены
         </div>
     </div>
 </footer>
