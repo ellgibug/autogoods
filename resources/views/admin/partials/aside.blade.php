@@ -38,6 +38,7 @@
                     <i class="main-icon fa fa-diamond" aria-hidden="true"></i> <span>Товары</span>
                 </a>
                 <ul><!-- submenus -->
+                    {{--<li><a href="admin/categories">Категории</a></li> <!-- Fix this -->--}}
                     <li><a href="admin/categories">Категории</a></li> <!-- Fix this -->
                     <li><a href="#">Секции</a></li>
                     <li><a href="#">Брэнды</a></li>
