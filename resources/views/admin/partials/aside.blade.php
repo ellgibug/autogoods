@@ -39,7 +39,7 @@
                 </a>
                 <ul><!-- submenus -->
                     {{--<li><a href="admin/categories">Категории</a></li> <!-- Fix this -->--}}
-                    <li><a href="admin/categories">Категории</a></li> <!-- Fix this -->
+                    <li><a href="categories">Категории</a></li> <!-- Fix this -->
                     <li><a href="#">Секции</a></li>
                     <li><a href="#">Брэнды</a></li>
                     <li><a href="#">Товары</a></li>
