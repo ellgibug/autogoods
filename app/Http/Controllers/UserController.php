@@ -96,7 +96,8 @@ class UserController extends Controller
 
         }
 
-        $cars = Car::where('user_id', Auth::user()->id)->get();
+        $cars = Auth::user()->cars()->get();
+//        $cars = Car::where('user_id', Auth::user()->id)->get();
         return view('front.users.index', compact(['cars', 'manufacturers', 'models', 'modifications']));
     }
 

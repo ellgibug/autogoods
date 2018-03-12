@@ -33,6 +33,25 @@ Route::any('apicall2', 'FrontPagesController@apiCall2')->name('api.call2');
 Route::any('excel', 'FrontPagesController@exProd')->name('ex.prod');
 
 
+Route::get('cart', 'CartController@cart')->name('cart');
+Route::get('cart/{cart}', 'CartController@addProductToCart')->name('add-product-to-cart'); //?post
+Route::match(['put', 'patch'],'cart/{cart}', 'CartController@updateCart')->name('update-cart');
+Route::delete('cart/{cart}', 'CartController@deleteProductFromCart')->name('destroy-cart');
+
+Route::get('wishlist', 'CartController@wishlist')->name('wishlist');
+Route::post('wishlist', 'CartController@sendWishlist')->name('send-wishlist');
+Route::get('wishlist/{wishlist}', 'CartController@addProductToWishlist')->name('add-product-to-wishlist'); //?post
+Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')->name('destroy-wishlist');
+
+
+Route::get('checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout');
+Route::match(['get', 'post'],'order', 'CheckoutController@createOrder')->middleware('checkout')->name('create-order');
+//Route::get('order', 'CartController@success')->middleware('checkout')->name('success');
+
+
+
+
+
 
 Route::prefix('admin')->group(function () {
 

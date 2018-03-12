@@ -2872,7 +2872,7 @@ body.menu-vertical #mainMenu.sidebar-vertical .navbar-collapse>ul.nav.navbar-nav
 	*/
 	#topBar {
 		display:block;
-		/*background-color:transparent;*/
+		/*background-color:red;*/
 		/*background-color:rgba(0,0,0,0.5);*/
 		/*border-bottom:rgba(0,0,0,0.05) 1px solid;*/
 	}
@@ -2889,7 +2889,7 @@ body.menu-vertical #mainMenu.sidebar-vertical .navbar-collapse>ul.nav.navbar-nav
 	}
 	#topBar,
 	#topBar>.container {
-		min-height: 39px;
+		min-height: 50px;
 		/*border-bottom:rgba(0,0,0,0.05) 1px solid;*/
 	}
 	

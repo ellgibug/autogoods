@@ -10,8 +10,8 @@ class Car extends Model
 
     protected $table = 'cars';
 
-    public function auto()
+    public function user()
     {
-        return $this->belongsTo('App\Auto', 'brand');
+        return $this->belongsTo('App\User');
     }
 }

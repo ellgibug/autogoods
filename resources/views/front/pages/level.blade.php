@@ -21,7 +21,7 @@
                         <ul class="list-unstyled">
                             @foreach($level->levels as $level2)
                                 <li>
-                                    <a href="{{ route('products.list', $level2->id) }}">{{ $level2->name }}</a>
+                                    <a href="{{ route('products.list', $level2->id) }}" class="bold">{{ $level2->name }}</a>
                                     @if(count($level2->levels))
                                         <ul class="list-unstyled ml-10">
                                             @foreach($level2->levels as $level3)
@@ -38,6 +38,7 @@
 
                 </div>
                 <div class="col-md-10">
+                    {{ $products->links() }}
                     <ul class="shop-item-list row list-inline m-0">
                     @forelse($products->chunk(4) as $chunk)
                         @foreach($chunk as $product)
@@ -60,7 +61,7 @@
                                                 <input type="checkbox" value="1">
                                                 <i></i> Сравнить
                                             </label>
-                                            <a href="#" class="btn btn-hvr hvr-grow btn-block m-0">В корзину {{ $product->price }} руб.</a>
+                                            <a href="{{ route('add-product-to-cart', $product->id) }}" class="btn btn-hvr hvr-grow btn-block m-0">В корзину {{ $product->price }} руб.</a>
                                         </div>
                                     </div>
                                 </li>
@@ -71,9 +72,11 @@
                         @endforelse
                     </ul>
                 </div>
+
             </div>
 
         </div>
+
     </section>
 
 

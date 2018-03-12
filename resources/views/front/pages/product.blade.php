@@ -98,7 +98,7 @@
                         <a href="#" class="btn btn-hvr hvr-grow m-0 btn-block">Добавить в список желаний</a>
                     </div>
                     <div class="col m-0">
-                        <a href="#" class="btn btn-hvr hvr-grow m-0 btn-block">Добавить в корзину</a>
+                        <a href="{{ route('add-product-to-cart', $product->id) }}" class="btn btn-hvr hvr-grow m-0 btn-block">Добавить в корзину</a>
                     </div>
                 </div>
 

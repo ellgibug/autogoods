@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'remove.token' => \App\Http\Middleware\RedirectIfTokenInRequest::class,
+        'checkout' => \App\Http\Middleware\Checkout::class,
     ];
 }

@@ -36,7 +36,8 @@
     <div class="container mt-20">
         <div class="row">
             <div class="col-md-3 mb-20 p-0 col-xs-4">
-                <form action="{{ route('products.search') }}" class="m-0 pt-0 pb-0 pl-10 pr-10">
+                {{--<form action="{{ route('products.search') }}" class="m-0 pt-0 pb-0 pl-10 pr-10">--}}
+                <form action="" class="m-0 pt-0 pb-0 pl-10 pr-10">
                     {{ csrf_field() }}
                     <div class="input-group">
                         <input type="text" placeholder="Поиск" class="form-control required" name="search" value="{{request()->get('search')}}">
@@ -49,7 +50,7 @@
             <div class="col-md-5 col-xs-4 mb-20">
                 <a href="#" class="btn btn-hvr hvr-float-shadow m-0" data-toggle="modal" data-target=".bs-example-modal-sm">Мой гараж</a>
                 <a href="#" class="btn btn-hvr hvr-float-shadow m-0">Сравнение</a>
-                <a href="#" class="btn btn-hvr hvr-float-shadow m-0">Корзина</a>
+                <a href="{{ route('cart') }}" class="btn btn-hvr hvr-float-shadow m-0">Корзина <span class="badge badge-info fs-11">{{ Cart::instance('shopping')->count() }}</span></a>
             </div>
             <div class="col-md-4 col-xs-4 mb-20">
                 <a href="#" class="btn btn-hvr hvr-float-shadow m-0 btn-block">Оформить заказ</a>

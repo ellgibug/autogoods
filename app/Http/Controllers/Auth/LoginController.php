@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\Request;
+use DB;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -40,5 +44,85 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('front.auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+
+            $storedCartItems = DB::table('shoppingcart')->where([
+                ['identifier', Auth::user()->id],
+                ['instance', 'shopping']
+            ])->value('content');
+
+            $storedWishlistItems = DB::table('shoppingcart')->where([
+                ['identifier', Auth::user()->id],
+                ['instance', 'wishlist']
+            ])->value('content');
+
+            $storedCartItems = \unserialize($storedCartItems);
+
+            $storedWishlistItems = \unserialize($storedWishlistItems);
+
+            if($storedCartItems){
+                foreach ($storedCartItems as $item){
+                    Cart::instance('shopping')->add($item->id, $item->name, $item->qty, $item->price)->associate('App\Product');
+                    if (($item->model->qty > 0) & ($item->model->qty < $item->qty)){
+                        Cart::instance('shopping')->update($item->rowId, $item->model->qty);
+                    } elseif ($item->model->qty == 0){
+                        Cart::instance('shopping')->remove($item->rowId);
+                    }
+                }
+            }
+
+            if($storedWishlistItems){
+                foreach ($storedWishlistItems as $item){
+                    Cart::instance('wishlist')->add($item->id, $item->name, $item->qty, $item->price)->associate('App\Product');
+                }
+            }
+
+
+            return $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function logout(Request $request)
+    {
+        DB::table('shoppingcart')->where([
+            ['identifier', Auth::user()->id],
+            ['instance', 'shopping']
+        ])->delete();
+
+        DB::table('shoppingcart')->where([
+            ['identifier', Auth::user()->id],
+            ['instance', 'wishlist']
+        ])->delete();
+
+        Cart::instance('shopping')->store(Auth::user()->id);
+        Cart::instance('wishlist')->store(Auth::user()->id);
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
     }
 }

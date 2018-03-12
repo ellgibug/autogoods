@@ -49,6 +49,48 @@
             </div>
         </div>
 
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   <strong>Мои заказы</strong>
+                </div>
+                <div class="panel-body">
+                    @foreach(Auth::guard('web')->user()->orders->sortByDesc('created_at') as $k => $order)
+                        <h1>Заказ № {{ $order->number }}!</h1>
+                        <p class="mb-10 fs-14">Стоимость заказа: {{ $order->amount }} руб.</p>
+                        <p class="mb-10 fs-14">Комментарий: {{ $order->comment }}</p>
+                        <p class="mb-10 fs-14">Доставка: самовывоз</p>
+                        <p class="mb-10 fs-14">Оплата: наличными</p>
+                        <p class="mb-10 fs-14">Статус: в сборке</p>
+                        <p class="fs-14">Дата заказа: {{ $order->created_at }}</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                @foreach( \unserialize($order->content) as $cartItem)
+                                    <tr>
+                                        <td>
+                                            <img src="{{ asset('public/images/img.jpg') }}" alt="{{ $cartItem->name }}" width="100px">
+                                        </td>
+                                        <td>
+                                            <p class="mb-6 fs-12">brand {{ $cartItem->model->brand }}</p>
+                                            <p class="mb-6 fs-12">sku {{ $cartItem->model->vendor_code }}</p>
+                                            <p class="mb-6 fs-14">{{ $cartItem->model->name }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-6 fs-12">{{ $cartItem->qty }} шт.</p>
+                                            <p class="mb-6 fs-12">{{ $cartItem->price * $cartItem->qty }} руб.</p>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
