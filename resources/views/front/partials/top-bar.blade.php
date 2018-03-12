@@ -50,7 +50,8 @@
             <div class="col-md-5 col-xs-4 mb-20">
                 <a href="#" class="btn btn-hvr hvr-float-shadow m-0" data-toggle="modal" data-target=".bs-example-modal-sm">Мой гараж</a>
                 <a href="#" class="btn btn-hvr hvr-float-shadow m-0">Сравнение</a>
-                <a href="{{ route('cart') }}" class="btn btn-hvr hvr-float-shadow m-0">Корзина <span class="badge badge-info fs-11">{{ Cart::instance('shopping')->count() }}</span></a>
+                {{--<a href="{{ route('cart') }}" class="btn btn-hvr hvr-float-shadow m-0">Корзина <span class="badge badge-info fs-11">{{ Cart::instance('shopping')->count() }}</span></a>--}}
+                <a href="{{ route('cart') }}" class="btn btn-hvr hvr-float-shadow m-0">Корзина</a>
             </div>
             <div class="col-md-4 col-xs-4 mb-20">
                 <a href="#" class="btn btn-hvr hvr-float-shadow m-0 btn-block">Оформить заказ</a>
