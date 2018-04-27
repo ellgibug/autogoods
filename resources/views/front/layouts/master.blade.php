@@ -21,6 +21,7 @@
     <link href="{{ asset('smarty/css/plugin-hover-buttons.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/header-1.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/color_scheme/lightgrey.css') }}" rel="stylesheet" type="text/css" id="color_scheme" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" id="color_scheme" />
 
     @yield('styles')
 </head>

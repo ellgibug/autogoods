@@ -36,6 +36,7 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Measoft\\Courier\\' => array($baseDir . '/packages/Measoft/Courier/src', $baseDir . '/packages/Measoft/Courier/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
     'Laravel\\Scout\\' => array($vendorDir . '/laravel/scout/src'),

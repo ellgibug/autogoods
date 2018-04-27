@@ -1,0 +1,19 @@
+.pvz_container{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.pvz_delivery{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.pvz_delivery:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.pvz_delivery.selected{
+    background-color: rgba(0,0,0,0.2);
+}

@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Measoft\Courier\CourierServiceProvider::class,
+
         ABCP\TecDoc\TecDocServiceProvider::class,
 
     ],

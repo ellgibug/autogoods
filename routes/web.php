@@ -31,6 +31,7 @@ Route::get('search', 'FrontPagesController@search')->middleware('remove.token')-
 
 Route::any('apicall2', 'FrontPagesController@apiCall2')->name('api.call2');
 Route::any('excel', 'FrontPagesController@exProd')->name('ex.prod');
+Route::any('ideal', 'FrontPagesController@ideal')->name('ideal');
 
 
 Route::get('cart', 'CartController@cart')->name('cart');
@@ -44,10 +45,9 @@ Route::get('wishlist/{wishlist}', 'CartController@addProductToWishlist')->name('
 Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')->name('destroy-wishlist');
 
 
-Route::get('checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout');
+Route::match(['get', 'post'],'checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout');
 Route::match(['get', 'post'],'order', 'CheckoutController@createOrder')->middleware('checkout')->name('create-order');
 //Route::get('order', 'CartController@success')->middleware('checkout')->name('success');
-
 
 
 

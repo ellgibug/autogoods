@@ -76,6 +76,7 @@ class ComposerStaticInit27a7cc7e160485dbffc75d4ffaf6bc84
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Measoft\\Courier\\' => 16,
         ),
         'L' => 
         array (
@@ -249,6 +250,11 @@ class ComposerStaticInit27a7cc7e160485dbffc75d4ffaf6bc84
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Measoft\\Courier\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/Measoft/Courier/src',
+            1 => __DIR__ . '/../..' . '/packages/Measoft/Courier/src',
         ),
         'League\\Flysystem\\' => 
         array (
@@ -2032,6 +2038,8 @@ class ComposerStaticInit27a7cc7e160485dbffc75d4ffaf6bc84
         'Maatwebsite\\Excel\\Readers\\LaravelExcelReader' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Readers/LaravelExcelReader.php',
         'Maatwebsite\\Excel\\Writers\\CellWriter' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/CellWriter.php',
         'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
+        'Measoft\\Courier\\CourierServiceProvider' => __DIR__ . '/../..' . '/packages/Measoft/Courier/src/CourierServiceProvider.php',
+        'Measoft\\Courier\\SkeletonClass' => __DIR__ . '/../..' . '/packages/Measoft/Courier/src/SkeletonClass.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',

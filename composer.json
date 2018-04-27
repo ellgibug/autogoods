@@ -27,12 +27,14 @@
             "database/factories"
         ],
         "psr-4": {
+            "Measoft\\Courier\\": "packages/Measoft/Courier/src",
             "ABCP\\TecDoc\\": "packages/ABCP/TecDoc/src",
             "App\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "Measoft\\Courier\\": "packages/Measoft/Courier/src",
             "ABCP\\TecDoc\\": "packages/ABCP/TecDoc/src",
             "Tests\\": "tests/"
         }
