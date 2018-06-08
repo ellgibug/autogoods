@@ -233,20 +233,19 @@ class CheckoutController extends Controller
         // получение информации об оплате заказа
         if($request->has(['OutSum', 'InvId', 'SignatureValue'])) {
 
-            $mrh_pass2 = "AvtoProkTT_12_";
+            $mrh_pass1 = "AvtoProkT_11_";
 
             $tm = getdate(time() + 9 * 3600);
             $date = "$tm[year]-$tm[mon]-$tm[mday] $tm[hours]:$tm[minutes]:$tm[seconds]";
 
-            $out_summ = $_REQUEST["OutSum"];
-            $inv_id = $_REQUEST["InvId"];
-            $shp_item = $_REQUEST["Shp_item"];
-            $crc = $_REQUEST["SignatureValue"];
+            $out_summ = $request->OutSum;
+            $inv_id = $request->InvId;
+            $shp_item = $request->Shp_item;
+            $crc = $request->SignatureValue;
 
             $crc = strtoupper($crc);
 
-            $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2:Shp_item=$shp_item"));
-//            $my_crc = strtoupper(hash('sha256', "$out_summ:$inv_id:$mrh_pass2:Shp_item=$shp_item"));
+            $my_crc = strtoupper(hash('sha256', "$out_summ:$inv_id:$mrh_pass1:Shp_item=$shp_item"));
 
             // не успешно
             if ($my_crc != $crc) {
