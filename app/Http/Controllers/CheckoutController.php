@@ -128,7 +128,7 @@ class CheckoutController extends Controller
                     // если не курьер, то создаем заказ
 
                     // measoft
-                    if($request->delivery == 3 || $request == 4){
+                    if($request->delivery == 3 || $request->delivery == 4){
                         $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
 
                         $order = array(
