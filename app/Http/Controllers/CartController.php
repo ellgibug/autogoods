@@ -20,6 +20,8 @@ class CartController extends Controller
             }
         }
 
+
+
         return view ('front.orders.cart', compact('cartItems'));
     }
 

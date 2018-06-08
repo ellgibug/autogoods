@@ -7,6 +7,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Order;
 use Auth;
 use Measoft\Courier\Measoft;
+use Session;
 
 class CheckoutController extends Controller
 {
@@ -100,10 +101,10 @@ class CheckoutController extends Controller
         return view('front.orders.checkout', compact('cartItems'));
     }
 
-    public function createOrder(Request $request)
+    public function createOrderP1(Request $request)
     {
+        if ($request->post()) {
 
-        if($request->post()){
             $this->validate($request, [
                 'name' => 'max:100',
                 'email' => 'string|email|max:50',
@@ -113,118 +114,331 @@ class CheckoutController extends Controller
                 'comment' => 'max:255'
             ]);
 
-            $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
+            $request->session()->put('name', $request->name);
+            $request->session()->put('email', $request->email);
+            $request->session()->put('phone', $request->phone);
+            $request->session()->put('delivery', $request->delivery);
+            $request->session()->put('payment', $request->payment);
 
-            $order = array(
-                'orderno'=> \rand(10000,99999),//Номер заказа
-                'barcode'=>'1673943081',//Штрих-код
-                'company'=>'АВТОТОВАРЫCNS',//Компания-получатель. Должно быть заполнено company ИЛИ person!
-                'person'=>'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
-                'phone'=>'89123456789',//Телефон. Можно указывать несколько телефонов
-                'town'=>'Москва',//Город
-                'address'=>'ул. Уральская, 1-2',//Адрес
-                'date'=>'2018-04-30',//Дата доставки в формате "YYYY-MM-DD"
-                'time_min'=>'12:00',//Желаемое время доставки в формате "HH:MM"
-                'time_max'=>'20:00',//Желаемое время доставки в формате "HH:MM"
-                'weight'=>5,//Общий вес заказа
-                'quantity'=>1,//Количество мест
-                'price'=>$amount,//Сумма заказа
-                'inshprice'=>$amount+200,//Объявленная стоимость
-                'enclosure'=>'Это ТЕСТОВЫЙ заказ',//Наименование
-                'instruction'=>'Комментарий',//Поручение
-            );
+            // если робокасса, то отправка на робокассу
+            switch ($request->payment) {
+                case 1:
+                    // проверка на тип доставки
+                    // если курьер, то отправка в меасофт
+                    // если не курьер, то создаем заказ
 
-            $cartItems = Cart::instance('shopping')->content();
+                    // measoft
+                    if($request->delivery == 3 || $request == 4){
+                        $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
 
-            $items = [];
+                        $order = array(
+                            //                    'orderno'=> \rand(10000,99999),//Номер заказа
+                            //                    'barcode'=>'1673943081',//Штрих-код
+                            'company' => 'AvtoProk',//Компания-получатель. Должно быть заполнено company ИЛИ person!
+                            'person' => 'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
+                            'phone' => '89123456789',//Телефон. Можно указывать несколько телефонов
+                            'town' => 'Москва',//Город
+                            'address' => 'ул. Уральская, 1-2',//Адрес
+                            'date' => date('Y-m-d'),//'2018-04-30',//Дата доставки в формате "YYYY-MM-DD"
+                            'time_min' => '12:00',//Желаемое время доставки в формате "HH:MM"
+                            'time_max' => '20:00',//Желаемое время доставки в формате "HH:MM"
+                            'weight' => 5,//Общий вес заказа
+                            'quantity' => 1,//Количество мест
+                            'price' => $amount,//Сумма заказа
+                            'inshprice' => $amount + 200,//Объявленная стоимость
+                            'enclosure' => 'Это ТЕСТОВЫЙ заказ',//Наименование
+                            'instruction' => 'Комментарий',//Поручение
+                        );
 
-            foreach ($cartItems as $cartItem) {
-                $items[] = [
-                    'name'=> $cartItem->name,//Название товара
-                    'quantity'=> $cartItem->qty,//Количество мест
-                    'mass'=> 1,//Масса единицы товара
-                    'retprice'=> $cartItem->price,//Цена единицы товара
-                ];
+                        $cartItems = Cart::instance('shopping')->content();
+
+                        $items = [];
+
+                        foreach ($cartItems as $cartItem) {
+                            $items[] = [
+                                'name' => $cartItem->name,//Название товара
+                                'quantity' => $cartItem->qty,//Количество мест
+                                'mass' => 1,//Масса единицы товара
+                                'retprice' => $cartItem->price,//Цена единицы товара
+                            ];
+                        }
+
+                        //Создаем экзепляр класса Меасофт
+                        $measoft = new Measoft('test', 'testm', 8);
+
+                        //Пытаемся отправить заказ
+                        if ($orderNumber = $measoft->orderRequest($order, $items)) {
+                            print 'Заказ ' . $orderNumber . ' успешно создан<br>';
+
+
+                            if ($status = $measoft->statusRequest($orderNumber)) {
+                                print 'Заказ ' . $orderNumber . ' сейчас: ' . $status;
+
+                            } else {
+                                print 'При получении статуса произошли ошибки:<br>';
+                                print_r($measoft->errors);
+
+                            }
+                        } else {
+                            print 'При отправке заказа произошли ошибки:<br>';
+                            print_r($measoft->errors);
+
+                        }
+
+
+                    } else {
+                        $order = Order::createOrder();
+                        if ($order) {
+                            Cart::instance('shopping')->destroy();
+                            return view('front.orders.order', compact('order'));
+                        } else {
+                            dd('При создании произошла ошибка. Пожалуйста, свяжитесь со специалистом компании.');
+                        }
+                    }
+
+
+                    dd($request->payment);
+                    break;
+                case 2:
+                    return back()->with('paymentMsg', 'Данный способ оплаты будет доступен позже. Пожалуйста, выберите Робокассу или Оплату наличными при получении.');
+                    break;
+                case 3:
+                    return back()->with('paymentMsg', 'Данный способ оплаты будет доступен позже. Пожалуйста, выберите Робокассу или Оплату наличными при получении.');
+                    break;
+                case 4: //робокасса
+                    $mrh_login = "AvtoProk";
+                    $mrh_pass1 = "AvtoProkT_11_";
+                    $inv_id = 0;
+                    $inv_desc = "тестовая оплата " . date('Y-m-d H:i:s');
+                    $out_summ = Cart::instance('shopping')->subtotal();
+                    $IsTest = 1;
+                    $crc = hash('sha256', "$mrh_login:$out_summ:$inv_id:$mrh_pass1");
+                    print "<html><script language=JavaScript " .
+                        "src='https://auth.robokassa.ru/Merchant/PaymentForm/FormMS.js?" .
+                        "MerchantLogin=$mrh_login&OutSum=$out_summ&InvoiceID=$inv_id" .
+                        "&Description=$inv_desc&SignatureValue=$crc&IsTest=$IsTest'></script></html>";
+                    die();
+                    break;
+                default:
+                    return back()->with('paymentMsg', 'Данный способ оплаты не определен. Пожалуйста, выберите Робокассу или Оплату наличными при получении.');
+                    break;
             }
-
-//            //Создаем экзепляр класса Меасофт
-            $measoft = new Measoft('test', 'testm', 8);
-//
-//            $a = $measoft->orderRequest4Regions('Моск');
-//
-//            foreach ($a->city as $item){
-//
-//                echo 'code '. $item->code . '<br>';
-//                echo 'name '. $item->name . '<br>';
-//                echo 'ShortName2 '. $item->country->ShortName2 . '<br>';
-//
-//
-//                var_dump($item);
-//            }
-//
-//            die();
-//
-//            dd($a);
-
-//            $orderNumber = $measoft->orderRequest($order, $items);
-
-//            if($orderNumber){
-//                dd($orderNumber);
-//            } else {
-//                dd($measoft->errors);
-//            }
-
-
-//            dd($status = $measoft->statusRequest(59160)); // новый
-//die();
-
-
-            //Пытаемся отправить заказ
-            if ($orderNumber = $measoft->orderRequest($order, $items)) {
-                print 'Заказ '.$orderNumber.' успешно создан<br>';
-
-                if ($status = $measoft->statusRequest($orderNumber)) {
-                    print 'Заказ '.$orderNumber.' сейчас: '.$status;
-                } else {
-                    print 'При получении статуса произошли ошибки:<br>';
-                    print_r($measoft->errors);
-                }
-            } else {
-                print 'При отправке заказа произошли ошибки:<br>';
-                print_r($measoft->errors);
-            }
-
-
-
-
-            $order = new Order();
-            $order->number =  \str_random();
-            $order->content =  \serialize(Cart::instance('shopping')->content());
-            if(Auth::check()){
-                $order->person =  Auth::user()->id;
-            }
-            $order->amount =  Cart::instance('shopping')->subtotal();
-            $order->name =  $request->name;
-            $order->email =  $request->email;
-            $order->phone =  $request->phone;
-            $order->comment =  $request->comment;
-            $order->delivery =  $request->delivery;
-            $order->payment =  $request->payment;
-            $order->status =  1;
-            $result = $order->save();
-
-            if ($result){
-                Cart::instance('shopping')->destroy();
-                return view('front.orders.order', compact('order'));
-            } else {
-                return back();
-            }
-        } else {
-            return back();
         }
-
-        // отнять кол-во товаров из ПРОДУКТА
     }
 
+    public function success(Request $request)
+    {
+        // если оплата прошла успешно, то проверяем тип доставки и отправляем заказ туда
 
+        // получение информации об оплате заказа
+        if($request->has(['OutSum', 'InvId', 'SignatureValue'])) {
+
+            $mrh_pass2 = "AvtoProkTT_12_";
+
+            $tm = getdate(time() + 9 * 3600);
+            $date = "$tm[year]-$tm[mon]-$tm[mday] $tm[hours]:$tm[minutes]:$tm[seconds]";
+
+            $out_summ = $request->OutSum;
+            $inv_id = $request->InvId;
+            $shp_item = $request->Shp_item;
+            $crc = $request->SignatureValue;
+
+            $crc = strtoupper($crc);
+
+            $my_crc = strtoupper(hash('sha256', "$out_summ:$inv_id:$mrh_pass2:Shp_item=$shp_item"));
+
+            // не успешно
+            if ($my_crc != $crc) {
+//            if (0) {
+                return redirect()->to(route('checkout'))->with('paymentMsg', 'При оплате заказа произошла ошибка получения корректности подписи. Пожалуйста, свяжитесь со специалистом компании.');
+            } else {
+                // успешно
+                $delivery = Session::get('delivery');
+
+                $robokassa_info = "order_num :$inv_id;Summ :$out_summ;Date :$date";
+
+                $request->session()->put('robokassa_info', $robokassa_info);
+
+                switch ($delivery) {
+                    case 1:
+                        // сохранение заказа
+                        $order = Order::createOrder();
+                        if ($order) {
+                            Cart::instance('shopping')->destroy();
+                            return view('front.orders.order', compact('order'));
+                        } else {
+                            dd('При создании произошла ошибка. Пожалуйста, свяжитесь со специалистом компании.');
+                        }
+                        break;
+                    case 2:
+                        // сохранение заказа
+                        $order = Order::createOrder();
+                        if ($order) {
+                            Cart::instance('shopping')->destroy();
+                            return view('front.orders.order', compact('order'));
+                        } else {
+                            dd('При создании произошла ошибка. Пожалуйста, свяжитесь со специалистом компании.');
+                        }
+                        break;
+                    case 3:
+                        // отправка в меасофт курьером
+
+                        $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
+
+                        $order = array(
+    //                    'orderno'=> \rand(10000,99999),//Номер заказа
+    //                    'barcode'=>'1673943081',//Штрих-код
+                            'company' => 'AvtoProk',//Компания-получатель. Должно быть заполнено company ИЛИ person!
+                            'person' => 'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
+                            'phone' => '89123456789',//Телефон. Можно указывать несколько телефонов
+                            'town' => 'Москва',//Город
+                            'address' => 'ул. Уральская, 1-2',//Адрес
+                            'date' => date('Y-m-d'),//'2018-04-30',//Дата доставки в формате "YYYY-MM-DD"
+                            'time_min' => '12:00',//Желаемое время доставки в формате "HH:MM"
+                            'time_max' => '20:00',//Желаемое время доставки в формате "HH:MM"
+                            'weight' => 5,//Общий вес заказа
+                            'quantity' => 1,//Количество мест
+                            'price' => $amount,//Сумма заказа
+                            'inshprice' => $amount + 200,//Объявленная стоимость
+                            'enclosure' => 'Это ТЕСТОВЫЙ заказ',//Наименование
+                            'instruction' => 'Комментарий',//Поручение
+                        );
+
+                        $cartItems = Cart::instance('shopping')->content();
+
+                        $items = [];
+
+                        foreach ($cartItems as $cartItem) {
+                            $items[] = [
+                                'name' => $cartItem->name,//Название товара
+                                'quantity' => $cartItem->qty,//Количество мест
+                                'mass' => 1,//Масса единицы товара
+                                'retprice' => $cartItem->price,//Цена единицы товара
+                            ];
+                        }
+
+                        //Создаем экзепляр класса Меасофт
+                        $measoft = new Measoft('test', 'testm', 8);
+
+                        //Пытаемся отправить заказ
+                        if ($orderNumber = $measoft->orderRequest($order, $items)) {
+                            print 'Заказ ' . $orderNumber . ' успешно создан<br>';
+
+
+                            if ($status = $measoft->statusRequest($orderNumber)) {
+                                print 'Заказ ' . $orderNumber . ' сейчас: ' . $status;
+
+                            } else {
+                                print 'При получении статуса произошли ошибки:<br>';
+                                print_r($measoft->errors);
+
+                            }
+                        } else {
+                            print 'При отправке заказа произошли ошибки:<br>';
+                            print_r($measoft->errors);
+
+                        }
+                        $order = Order::createOrder();
+                        if ($order) {
+                            Cart::instance('shopping')->destroy();
+                            return view('front.orders.order', compact('order'));
+                        } else {
+                            dd('При создании произошла ошибка. Пожалуйста, свяжитесь со специалистом компании.');
+                        }
+
+
+
+                        break;
+                    case 4:
+                        // отправка в меасофт пункт выдачи
+
+                        $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
+
+                        $order = array(
+                            //                    'orderno'=> \rand(10000,99999),//Номер заказа
+                            //                    'barcode'=>'1673943081',//Штрих-код
+                            'company' => 'AvtoProk',//Компания-получатель. Должно быть заполнено company ИЛИ person!
+                            'person' => 'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
+                            'phone' => '89123456789',//Телефон. Можно указывать несколько телефонов
+                            'town' => 'Москва',//Город
+                            'address' => 'ул. Уральская, 1-2',//Адрес
+                            'date' => date('Y-m-d'),//'2018-04-30',//Дата доставки в формате "YYYY-MM-DD"
+                            'time_min' => '12:00',//Желаемое время доставки в формате "HH:MM"
+                            'time_max' => '20:00',//Желаемое время доставки в формате "HH:MM"
+                            'weight' => 5,//Общий вес заказа
+                            'quantity' => 1,//Количество мест
+                            'price' => $amount,//Сумма заказа
+                            'inshprice' => $amount + 200,//Объявленная стоимость
+                            'enclosure' => 'Это ТЕСТОВЫЙ заказ',//Наименование
+                            'instruction' => 'Комментарий',//Поручение
+                        );
+
+                        $cartItems = Cart::instance('shopping')->content();
+
+                        $items = [];
+
+                        foreach ($cartItems as $cartItem) {
+                            $items[] = [
+                                'name' => $cartItem->name,//Название товара
+                                'quantity' => $cartItem->qty,//Количество мест
+                                'mass' => 1,//Масса единицы товара
+                                'retprice' => $cartItem->price,//Цена единицы товара
+                            ];
+                        }
+
+                        //Создаем экзепляр класса Меасофт
+                        $measoft = new Measoft('test', 'testm', 8);
+
+                        //Пытаемся отправить заказ
+                        if ($orderNumber = $measoft->orderRequest($order, $items)) {
+                            print 'Заказ ' . $orderNumber . ' успешно создан<br>';
+
+
+                            if ($status = $measoft->statusRequest($orderNumber)) {
+                                print 'Заказ ' . $orderNumber . ' сейчас: ' . $status;
+
+                            } else {
+                                print 'При получении статуса произошли ошибки:<br>';
+                                print_r($measoft->errors);
+
+                            }
+                        } else {
+                            print 'При отправке заказа произошли ошибки:<br>';
+                            print_r($measoft->errors);
+
+                        }
+                        $order = Order::createOrder();
+                        if ($order) {
+                            Cart::instance('shopping')->destroy();
+                            return view('front.orders.order', compact('order'));
+                        } else {
+                            dd('При создании произошла ошибка. Пожалуйста, свяжитесь со специалистом компании.');
+                        }
+
+
+
+                        break;
+                    default:
+                        // вывод сообщения о неизвестном типе доставки
+                        dd('При создании произошла ошибка. Выбран неизветсный тип доставки. Пожалуйста, свяжитесь со специалистом компании.');
+                        break;
+                }
+            }
+        } else {
+            return redirect()->to(route('checkout'));
+        }
+
+    }
+
+    public function fail(Request $request)
+    {
+        if($request->has('InvId')){
+            $inv_id = $request->InvId;
+            echo "Вы отказались от оплаты. Заказ# $inv_id\n";
+            echo "You have refused payment. Order# $inv_id\n";
+        } else {
+            return redirect()->to(route('checkout'));
+        }
+
+    }
 }

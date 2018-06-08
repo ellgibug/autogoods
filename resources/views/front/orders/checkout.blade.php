@@ -6,11 +6,14 @@
     <div class="container">
     <h1>Оформление заказа</h1>
 
+    @if(Session::has('paymentMsg'))
+        <p class="text-danger bold fs-18">{{ Session::get('paymentMsg') }}</p>
+    @endif
 
     @if(Cart::count())
         <div class="row">
                 <div class="col-md-9">
-                    <form method="post" action="{{ route('create-order') }}" id="order_form">
+                    <form method="post" action="{{ route('create-order-p1') }}" id="order_form">
                         {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">ФИО</label>

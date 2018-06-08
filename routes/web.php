@@ -29,9 +29,9 @@ Route::delete('cars/{id?}', 'CarController@destroy')->name('car.destroy');
 
 Route::get('search', 'FrontPagesController@search')->middleware('remove.token')->name('products.search');
 
-Route::any('apicall2', 'FrontPagesController@apiCall2')->name('api.call2');
-Route::any('excel', 'FrontPagesController@exProd')->name('ex.prod');
-Route::any('ideal', 'FrontPagesController@ideal')->name('ideal');
+//Route::any('apicall2', 'FrontPagesController@apiCall2')->name('api.call2');
+//Route::any('excel', 'FrontPagesController@exProd')->name('ex.prod');
+//Route::any('ideal', 'FrontPagesController@ideal')->name('ideal');
 
 
 Route::get('cart', 'CartController@cart')->name('cart');
@@ -46,7 +46,9 @@ Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')
 
 
 Route::match(['get', 'post'],'checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout');
-Route::match(['get', 'post'],'order', 'CheckoutController@createOrder')->middleware('checkout')->name('create-order');
+Route::match(['get', 'post'],'order_p1', 'CheckoutController@createOrderP1')->middleware('checkout')->name('create-order-p1');
+Route::match(['get', 'post'],'success', 'CheckoutController@success')->name('success');
+Route::match(['get', 'post'],'fail', 'CheckoutController@fail')->name('fail');
 //Route::get('order', 'CartController@success')->middleware('checkout')->name('success');
 
 
