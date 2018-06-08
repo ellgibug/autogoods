@@ -132,8 +132,8 @@ class CheckoutController extends Controller
                         $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
 
                         $order = array(
-                            //                    'orderno'=> \rand(10000,99999),//Номер заказа
-                            //                    'barcode'=>'1673943081',//Штрих-код
+                                                'orderno'=> \rand(10000,99999),//Номер заказа
+                                                'barcode'=>'1673943081',//Штрих-код
                             'company' => 'AvtoProk',//Компания-получатель. Должно быть заполнено company ИЛИ person!
                             'person' => 'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
                             'phone' => '89123456789',//Телефон. Можно указывать несколько телефонов
@@ -286,8 +286,8 @@ class CheckoutController extends Controller
                         $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
 
                         $order = array(
-    //                    'orderno'=> \rand(10000,99999),//Номер заказа
-    //                    'barcode'=>'1673943081',//Штрих-код
+                        'orderno'=> \rand(10000,99999),//Номер заказа
+                        'barcode'=>'1673943081',//Штрих-код
                             'company' => 'AvtoProk',//Компания-получатель. Должно быть заполнено company ИЛИ person!
                             'person' => 'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
                             'phone' => '89123456789',//Телефон. Можно указывать несколько телефонов
@@ -355,8 +355,8 @@ class CheckoutController extends Controller
                         $amount = floatval(preg_replace('/[^\d.]/', '', Cart::instance('shopping')->subtotal()));
 
                         $order = array(
-                            //                    'orderno'=> \rand(10000,99999),//Номер заказа
-                            //                    'barcode'=>'1673943081',//Штрих-код
+                                                'orderno'=> \rand(10000,99999),//Номер заказа
+                                                'barcode'=>'1673943081',//Штрих-код
                             'company' => 'AvtoProk',//Компания-получатель. Должно быть заполнено company ИЛИ person!
                             'person' => 'Иванов Иван Иванович',//Контактное лицо. Должно быть заполнено company ИЛИ person!
                             'phone' => '89123456789',//Телефон. Можно указывать несколько телефонов
