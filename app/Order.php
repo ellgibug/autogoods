@@ -31,7 +31,7 @@ class Order extends Model
         $order->name =  Session::get('name');
         $order->email =  Session::get('email');
         $order->phone =  Session::get('phone');
-        $order->comment =  Session::get('robokassa_info');
+        $order->comment = \strlen(Session::get('robokassa_info')) > 2 ? Session::get('robokassa_info') : 'Это просто коментарий.';
         $order->delivery =  Session::get('delivery');
         $order->payment =  Session::get('payment');
 //        $order->robokassa_info =  isset($robokassa_info) ? $robokassa_info : '';
