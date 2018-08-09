@@ -258,6 +258,7 @@ class Measoft
 
         $context = stream_context_create($opts);
         if (!$contents = @file_get_contents('https://home.courierexe.ru/api/', false, $context)) {
+
             if (!$curl = curl_init()) {
                 $this->errors = 'Возможно не поддерживается передача по HTTPS. Проверьте наличие open_ssl';
                 return false;

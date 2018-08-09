@@ -2052,7 +2052,7 @@ ul.list-icons>li>i {
 	top: 28px;
 }
 .ribbon-inner {
-	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	font-family: 'Montserrat', "Open Sans",Helvetica,Arial,sans-serif;
 
 	-webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.15);
 	   -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.15);
@@ -3095,7 +3095,7 @@ button::-moz-focus-inner {
   color: #FFF;
   font-style: normal;
   font-size: 28px;
-  font-family: Arial, Baskerville, monospace; }
+  font-family: 'Montserrat', Arial, Baskerville, monospace; }
   .mfp-close:hover, .mfp-close:focus {
     opacity: 1;
     filter: alpha(opacity=100); }
@@ -5377,7 +5377,7 @@ a.btn.btn-sm {
 .countTo-sm,
 .countTo-md,
 .countTo-lg {
-	font-family:'Raleway', 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family: 'Montserrat','Raleway', 'Open Sans', Arial, Helvetica, sans-serif;
 }
 .countTo-sm span.countTo {
 	margin-bottom:20px;
@@ -5427,7 +5427,7 @@ a.btn.btn-sm {
 /* Countdown */
 .countdown { 
 	display: block; 
-	font-family:'Raleway', 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family:'Montserrat','Raleway', 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 .countdown-row {
@@ -8694,7 +8694,7 @@ div.mega-price-table .pricing-head small {
 	display:block;
 	color:rgba(255,255,255,0.7);
 	font-weight:300;
-	font-family:'Open Sans', Arial, Hevletica, sans-serif;
+	font-family:'Montserrat','Open Sans', Arial, Hevletica, sans-serif;
 }
 
 div.mega-price-table .pricing-desc li,
@@ -8762,7 +8762,7 @@ div.mega-price-table .dropdown-menu {
 	text-align: center;
 	position: relative;
 	border: 1px solid #D0D6DF;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family:'Montserrat', Arial, Helvetica, sans-serif;
 
 	-webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.05);
 	   -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.05);
@@ -11218,6 +11218,7 @@ section.dark .select2-container--default .select2-selection--single {
 .nav-tabs>li {
     float: left;
     margin-bottom: -1px;
+
 }
 
 .nav>li {
@@ -11228,15 +11229,15 @@ section.dark .select2-container--default .select2-selection--single {
 
 .nav-tabs>li>a {
 	color:#111;
-	font-weight:bold;
+
 
 	position: relative;
 	display: block;
 	padding: 10px 15px;
 
-	-webkit-border-radius: 3px !important;
-	   -moz-border-radius: 3px !important;
-			border-radius: 3px !important;
+	/*-webkit-border-radius: 3px !important;*/
+	   /*-moz-border-radius: 3px !important;*/
+			/*border-radius: 3px !important;*/
 }
 	.nav-tabs>li>a.active {
 		color:#000;
@@ -11250,7 +11251,7 @@ section.dark .nav-tabs>li>a {
 	color:#fff;
 }
 section.dark .nav-tabs.nav-justified>li>a {
-	border-bottom-color:#666;
+	/*border-bottom-color:#666;*/
 }
 .tab-content {
 	padding:15px 0;
@@ -11283,11 +11284,11 @@ section.dark .nav-tabs.nav-clean>li>a.active {
 
 /* Top Border */
 .nav-tabs.nav-top-border>li>a {
-	border-top:transparent 3px solid !important;
+	border-top:transparent 1px solid !important;
 }
 .nav-tabs.nav-top-border>li>a.active,
 .nav-tabs.nav-top-border>li>a.active:hover {
-	border-top:#888 3px solid !important;
+	border-top:#888 1px solid !important;
 
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;
@@ -11313,7 +11314,7 @@ section.dark .nav-tabs.nav-clean>li>a.active {
 }
 .nav-tabs.nav-bottom-border>li>a.active,
 .nav-tabs.nav-bottom-border>li>a.active:hover {
-	border-bottom:#888 3px solid !important;
+	border-bottom:#888 2px solid !important;
 
 	-webkit-border-radius: 0 !important;
 	   -moz-border-radius: 0 !important;
@@ -11401,7 +11402,7 @@ section.dark .nav-tabs.nav-stacked>li>a.active {
 	}
 	.nav-tabs>li>a :focus,
 	.nav-tabs>li>a.active {
-		background-color:rgba(0,0,0,0.05);
+		/*background-color:rgba(0,0,0,0.05);*/
 	}
 }
 
@@ -12757,12 +12758,12 @@ figure.zoom>a.lightbox {
 	text-align:center;
 	color:#fff;
 
-	-webkit-border-bottom-right-radius: 15px;
-	-webkit-border-top-left-radius: 15px;
-	-moz-border-radius-bottom-right: 15px;
-	-moz-border-radius-top-left: 15px;
-	border-bottom-right-radius: 15px;
-	border-top-left-radius: 15px;
+	/*-webkit-border-bottom-right-radius: 15px;*/
+	/*-webkit-border-top-left-radius: 15px;*/
+	/*-moz-border-radius-bottom-right: 15px;*/
+	/*-moz-border-radius-top-left: 15px;*/
+	/*border-bottom-right-radius: 15px;*/
+	/*border-top-left-radius: 15px;*/
 }
 figure.zoom>a.lightbox:hover {
 	background-color:#333;
@@ -13022,7 +13023,7 @@ form.validate label.error {
 	display:inline-block;
 	margin: 0 15px 3px 0;
 	padding-left: 27px;
-	font-size: 15px;
+	font-size: 12px;
 	line-height: 27px;
 	color: #404040;
 	cursor: pointer;
@@ -13047,10 +13048,11 @@ section.dark .checkbox {
 	width: 19px;
 	height: 19px;
 	outline: none;
-	border-width: 2px;
+	border-width: 1px;
 	border-style: solid;
 	border-color:rgba(0,0,0,0.3);
-	background: rgba(255,255,255,0.3);
+	background: #fff;
+	border-radius: 2px;
 }
 section.dark .radio i,
 section.dark .checkbox i {
@@ -13083,11 +13085,12 @@ section.dark .checkbox i {
 .checkbox input + i:after {
 	content: '\f00c';
 	top: 0;
-	left: 0px;
+	left: 1px;
 	width: 15px;
 	height: 15px;
 	font: normal 12px/16px FontAwesome;
 	text-align: center;
+
 }
 .radio input:checked + i:after,
 .checkbox input:checked + i:after {
@@ -13165,7 +13168,8 @@ section.dark .radio input + i:after {
 	background-color:rgba(255,255,255,8);	
 }
 .checkbox input + i:after {
-	color: rgba(0,0,0,8);
+	/*color: rgba(0,0,0,8);*/
+	color: #2bb673;
 }
 section.dark .checkbox input + i:after {
 	color: rgba(255,255,255,8);

@@ -22,7 +22,7 @@ class FrontPagesController extends Controller
     public function getProductsByLevels($id)
     {
         $level = Level::find($id);
-        $products = $level->products()->paginate(16);
+        $products = $level->products()->paginate(20);
 
         if (Auth::guard('web')->check()){
 

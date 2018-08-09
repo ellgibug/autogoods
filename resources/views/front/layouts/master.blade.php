@@ -10,11 +10,12 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
+    {{--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />--}}
 
     <link href="{{ asset('smarty/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
 
     <link href="{{ asset('smarty/css/essentials.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/layout.css') }}" rel="stylesheet" type="text/css" />
@@ -22,23 +23,24 @@
     <link href="{{ asset('smarty/css/header-1.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('smarty/css/color_scheme/lightgrey.css') }}" rel="stylesheet" type="text/css" id="color_scheme" />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" id="color_scheme" />
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" id="color_scheme" />
+
 
     @yield('styles')
 </head>
 
-<body class="smoothscroll enable-animation enable-materialdesign">
+<body class="smoothscroll enable-animation enable-materialdesign boxed">
 
 <!-- wrapper -->
-<div id="wrapper" class="mdl-shadow--4dp">
 
     @include('front.partials.top-bar')
 
-        <div id="header" class="navbar-toggleable-sm clearfix dark b-0 header-sm">
+        <div id="header" class="navbar-toggleable-sm clearfix header-sm">
 
 
         <!-- TOP NAV -->
         <header id="topNav">
-            <div class="container">
+            <div class="container p-0">
                 <!-- Mobile Menu Button -->
                 <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
                     <i class="fa fa-bars"></i>
@@ -50,11 +52,16 @@
 
         </div>
 
+<div id="wrapper">
+
+
     @yield('s-section')
 
-    @include('front.partials.footer')
 
 </div>
+
+@include('front.partials.footer')
+
 <!-- /wrapper -->
 
 

@@ -23,9 +23,11 @@ class CheckoutController extends Controller
             }
         }
 
-//        $measoft = new Measoft('test', 'testm', 8);
-//        $towns = [];
-//        $response = $measoft->orderRequest4Cities("Моск");
+        $measoft = new Measoft('test', 'testm', 8);
+        $towns = [];
+        $response = $measoft->createXML4Cities('Моск');
+        $response = $measoft->orderRequest4Cities('Моск');
+        dd($response);
 //        foreach ($response->town as $town){
 //            array_push($towns, $town->name);
 //        }

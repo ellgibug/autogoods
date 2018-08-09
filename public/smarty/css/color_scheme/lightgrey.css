@@ -119,7 +119,7 @@
 	#progressBar #bar,								/* OWL */
 	#page-menu,
 	#page-menu ul {
-		background-color:#9E9E9E;
+		/*background-color:#9E9E9E;*/
 	}
 	
 	/* !important required */
@@ -447,17 +447,17 @@ i.ico-hover:hover {
  **************************************************************** **/
 .nav-tabs.nav-top-border>li>a.active,
 .nav-tabs.nav-top-border>li>a.active:hover {
-	border-top-color:#9E9E9E !important;
+	border-top-color:blue !important;
 }
 .nav-tabs.nav-bottom-border>li>a.active,
 .nav-tabs.nav-bottom-border>li>a.active:hover {
-	border-bottom-color:#9E9E9E !important;
+	border-bottom-color:blue !important;
 }
 .nav-tabs.nav-alternate>li>a.active {
-	background-color: #9E9E9E !important;
+	background-color: blue !important;
 }
 .nav-tabs>li>a.active {
-	color: #9E9E9E !important;
+	color: blue !important;
 }
 
 
